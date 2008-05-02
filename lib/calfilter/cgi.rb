@@ -5,6 +5,8 @@ require 'stringio'
 module CalFilter
 
   class CGIWrapper
+    attr_reader :output_stream
+    
     def initialize(output_stream)
       set_cgi_constant
       CalFilter.output_stream = @output_stream = output_stream
@@ -19,7 +21,7 @@ module CalFilter
     end
     
     def finish
-      CGI.out('text/calendar; charset=utf-8'){ @output_stream.string }
+      CGI.out('text/calendar; charset=utf-8'){ output_stream.string }
     end
   end
 

@@ -14,13 +14,22 @@ describe "calfilter cgi scripts" do
     require 'calfilter/cgi'
   end
   
-  it "should initialize a CFCGI object" do
-    assert CalFilter::CGI == ""
+  it "should initialize a CGIWrapper object" do
+    assert_not_nil CalFilter::CGIWrapper
   end
   
-  xit "should set CalFilter's output stream"
+  it "should set CalFilter's output stream" do
+    assert_not_nil CalFilter::CGIWRAPPER.output_stream
+    assert_equal CalFilter::CGIWRAPPER.output_stream, CalFilter.output_stream
+  end
   
-  xit "should finish the CGI on process exit"
+  it "should finish the CGI on process exit" do
+    CalFilter::CGIWRAPPER.expects(:finish)
+    $at_exit_block.call
+  end
   
-  xit "should write proper output when finishing"
+  it "should write proper output when finishing" do
+    CalFilter::CGI.expects(:out).with('text/calendar; charset=utf-8')
+    CalFilter::CGIWRAPPER.finish
+  end
 end
