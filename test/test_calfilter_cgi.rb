@@ -10,7 +10,7 @@ end
 
 describe "calfilter cgi scripts" do
   before(:all) do
-    def CalFilter.mock_cgi_instance; ""; end
+    CalFilter::CGI = ''
     require 'calfilter/cgi'
   end
   

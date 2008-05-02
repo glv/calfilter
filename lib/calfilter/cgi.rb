@@ -3,26 +3,19 @@ require 'cgi'
 require 'stringio'
 
 module CalFilter
-  def self.make_cgi
-    CGIWrapper.new(StringIO.new)
-  end
-  
+
   class CGIWrapper
     def initialize(output_stream)
-      set_cgi_constant(create_cgi_instance)
+      set_cgi_constant
       CalFilter.output_stream = @output_stream = output_stream
     end
     
     def create_cgi_instance
-      if CalFilter.respond_to?(:mock_cgi_instance)
-        CalFilter.mock_cgi_instance
-      else
-        CGI.new
-      end
+      CGI.new
     end
     
-    def set_cgi_constant(cgi)
-      CalFilter.const_set('CGI', cgi) unless CalFilter.const_defined?('CGI')
+    def set_cgi_constant
+      CalFilter.const_set('CGI', create_cgi_instance) unless CalFilter.const_defined?('CGI')
     end
     
     def finish
@@ -30,7 +23,11 @@ module CalFilter
     end
   end
 
-  CGIWRAPPER = make_cgi
+  def self.make_cgi_wrapper
+    CGIWrapper.new(StringIO.new)
+  end
+  
+  CGIWRAPPER = make_cgi_wrapper
   
 end
 
