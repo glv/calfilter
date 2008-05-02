@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# Would be accessed like this:
+# http://example.com/cgi_bin/example.rb?http://example.com/unfiltered_calendar.ics
+
 require 'rubygems'
 gem 'calfilter'
 require 'calfilter'
