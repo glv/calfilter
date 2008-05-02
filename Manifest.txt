@@ -1,0 +1,10 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/calfilter
+example.rb
+lib/calfilter.rb
+lib/calfilter/cgi.rb
+lib/calfilter/tripit.rb
+test/test_calfilter.rb
