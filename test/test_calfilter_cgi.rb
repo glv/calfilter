@@ -4,19 +4,18 @@ require 'mocha'
 
 require 'calfilter'
 
-CalFilter::CGI = Mocha::Mock.new
 def at_exit(&block)
   $at_exit_block = block
 end
-require 'calfilter/cgi'
-class CGI
-  def initialize_query
-  end
-end
 
 describe "calfilter cgi scripts" do
+  before(:all) do
+    def CalFilter.mock_cgi_instance; ""; end
+    require 'calfilter/cgi'
+  end
+  
   it "should initialize a CFCGI object" do
-    assert_true CalFilter::CFCGI === CalFilter.make_cgi
+    assert CalFilter::CGI == ""
   end
   
   xit "should set CalFilter's output stream"
