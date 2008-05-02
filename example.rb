@@ -1,4 +1,7 @@
+#!/usr/bin/env ruby
+
 require 'rubygems'
+gem 'calfilter'
 require 'calfilter'
 require 'calfilter/cgi'
 
