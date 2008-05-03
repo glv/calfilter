@@ -1,7 +1,7 @@
 %w{rubygems icalendar date open-uri}.each{|l| require l}
 
 module CalFilter
-  VERSION = '1.0.0'
+  VERSION = '1.1.0'
   
   def self.output_stream
     @output_stream
@@ -140,15 +140,8 @@ module CalFilter
   
 end
 
-def filter_calendars_at(url, &block)
-  filter_calendars(open(url, 'r'), &block)
-end
-
-def filter_calendars(ics_data, &block)
-  filter_icalendars(Icalendar.parse(ics_data), &block)
-end
-
-def filter_icalendars(cals)
+def filter_calendars(*sources, &block)
+  cals = convert_to_icalendars(sources)
   return cals unless block_given?
   actions = cals.map do |cal| 
     wrapper = CalFilter.wrap_calendar(cal)
@@ -163,4 +156,19 @@ def filter_icalendars(cals)
     new_cals.each{|cal| os.puts cal.to_ical}
   end
   new_cals
+end
+
+def convert_to_icalendars(sources)
+  sources.map{|source| convert_to_icalendar(source)}.flatten
+end
+
+def convert_to_icalendar(source)
+  case source
+  when Array
+    source
+  when /^\s*BEGIN:VCALENDAR/m
+    Icalendar.parse(source)
+  else
+    Icalendar.parse(open(source, 'r'))
+  end
 end

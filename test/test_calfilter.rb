@@ -7,22 +7,22 @@ require 'calfilter'
 describe "filtering calendars" do
   it "should pass things straight through" do
     expected_cals = [1, 2, 3]
-    actual_cals = filter_icalendars(expected_cals.dup)
+    actual_cals = filter_calendars(expected_cals.dup)
     assert_equal expected_cals.size, actual_cals.size
   end
   
   it "should delete a calendar when told" do
-    cals = filter_icalendars([1, 2, 3]){|cal| cal.remove if cal.__delegate__ == 2}
+    cals = filter_calendars([1, 2, 3]){|cal| cal.remove if cal.__delegate__ == 2}
     assert_equal [1, 3], cals
   end
   
   it "should keep a calendar when told" do
-    cals = filter_icalendars([1, 2, 3]){|cal| cal.keep if cal.__delegate__ == 2}
+    cals = filter_calendars([1, 2, 3]){|cal| cal.keep if cal.__delegate__ == 2}
     assert_equal [2], cals
   end
   
   it "should delete parts of a calendar when told" do
-    cals = filter_icalendars(%w{1 2 3}) do |cal| 
+    cals = filter_calendars(%w{1 2 3}) do |cal| 
       events = mock(:clear => nil)
       cal.__delegate__.stubs(:events).returns(events)
       cal.remove(:events)
@@ -30,7 +30,7 @@ describe "filtering calendars" do
   end
   
   it "should keep parts of a calendar when told" do
-    cals = filter_icalendars(%w{1 2 3}) do |cal| 
+    cals = filter_calendars(%w{1 2 3}) do |cal| 
       events = mock(:clear => nil)
       cal.__delegate__.stubs(:events).returns(events)
       cal.keep(:freebusys, :journals, :todos)
@@ -39,13 +39,13 @@ describe "filtering calendars" do
   
   it "should complain if we both keep and remove a calendar" do
     assert_raise(CalFilter::FilterError) do
-      cals = filter_icalendars([1]){|cal| cal.keep; cal.remove}
+      cals = filter_calendars([1]){|cal| cal.keep; cal.remove}
     end
   end
   
   it "should complain if we keep one calendar and remove another" do
     assert_raises(CalFilter::FilterError) do
-      cals = filter_icalendars([1, 2, 3]) do |cal|
+      cals = filter_calendars([1, 2, 3]) do |cal|
         case cal.__delegate__
         when 1: cal.keep;
         when 2: cal.remove;
@@ -56,7 +56,7 @@ describe "filtering calendars" do
   
   it "should delegate unknown methods to the Calendar objects" do
     results = []
-    cals = filter_icalendars([0, 1]){|cal| results << cal.zero?}
+    cals = filter_calendars([0, 1]){|cal| results << cal.zero?}
     assert_equal [true, false], results
   end
     
@@ -82,7 +82,7 @@ describe "filtering resources" do
   end
   
   xit "should leave resources alone if no block specified" do
-    filter_icalendars([@cal]) do |cal|
+    filter_calendars([@cal]) do |cal|
       cal.__delegate__.expects(:events).returns(@cal.events)
       cal.filter_events
     end

@@ -1,3 +1,11 @@
+=== 1.1.0 / 2008-05-03
+
+* 1 major enhancement
+
+  * Collapsed filter_calendars, filter_icalendars, and
+    filter_calendars_at into one smarter filter_calendars
+    method.
+
 === 1.0.0 / 2008-05-02
 
 * 1 major enhancement

@@ -24,7 +24,7 @@ various purposes, including:
 
   require 'calfilter'
 
-  cals = filter_calendars_at('some_url') do |cal|
+  cals = filter_calendars('some_url') do |cal|
       cal.keep(:events)  # not journals, todos, or freebusys
     
       cal.filter_events do |evt|
