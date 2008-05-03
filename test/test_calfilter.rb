@@ -5,6 +5,23 @@ require 'mocha'
 require 'calfilter'
 
 describe "filtering calendars" do
+  it "should fetch urls and parse them" do
+    url = 'http://example.com/'
+    ics = 'ics data'
+    self.expects(:open).with('http://example.com/', 'r').returns(ics)
+    Icalendar.expects(:parse).with(ics).returns([])
+    filter_calendars("http://example.com/")
+  end
+  
+  it "should parse ics data" do
+    ics = %{
+      
+      BEGIN:VCALENDAR
+    }
+    Icalendar.expects(:parse).with(ics).returns([])
+    filter_calendars(ics)
+  end
+  
   it "should pass things straight through" do
     expected_cals = [1, 2, 3]
     actual_cals = filter_calendars(expected_cals.dup)

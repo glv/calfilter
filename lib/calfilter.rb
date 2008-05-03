@@ -164,6 +164,8 @@ end
 
 def convert_to_icalendar(source)
   case source
+  when Icalendar::Calendar
+    [source]
   when Array
     source
   when /^\s*BEGIN:VCALENDAR/m
