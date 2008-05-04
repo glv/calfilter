@@ -1,7 +1,7 @@
 %w{rubygems icalendar date open-uri}.each{|l| require l}
 
 module CalFilter
-  VERSION = '1.1.1'
+  VERSION = '1.1.2'
   
   def self.output_stream
     @output_stream
@@ -159,7 +159,7 @@ def filter_calendars(*sources, &block)
 end
 
 def convert_to_icalendars(sources)
-  sources.map{|source| convert_to_icalendar(source)}.flatten
+  sources.inject([]){|accum, source| accum += convert_to_icalendar(source)}
 end
 
 def convert_to_icalendar(source)
