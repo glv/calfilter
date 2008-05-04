@@ -1,7 +1,7 @@
 %w{rubygems icalendar date open-uri}.each{|l| require l}
 
 module CalFilter
-  VERSION = '1.1.0'
+  VERSION = '1.1.1'
   
   def self.output_stream
     @output_stream
