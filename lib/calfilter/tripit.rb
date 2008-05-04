@@ -15,16 +15,14 @@ module CalFilter
     def tripit_type(*args)
       return :unknown unless __kind__ == 'event'
       if args.empty?
-          description =~ /^\[(.+?)\]/m
-          TripIt::EVENT_TYPES[$1] || :unknown
-        else
-          args.include?(tripit_type)
-        end
+        description =~ /^\[(.+?)\]/m
+        TripIt::EVENT_TYPES[$1] || :unknown
+      else
+        args.include?(tripit_type)
       end
     end
-
   end
-  
+
   class ResourceWrapper
     include TripIt
   end
