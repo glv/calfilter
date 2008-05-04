@@ -1,3 +1,10 @@
+=== 1.1.3 / 2008-05-04
+
+* Bug fixes:
+
+  * Monkey-patched Icalendar to deal with Dates (as opposed to
+    DateTimes) correctly.
+
 === 1.1.2 / 2008-05-04
 
 * Bug fix in calfilter.rb

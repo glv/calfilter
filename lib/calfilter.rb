@@ -1,7 +1,10 @@
+$:.unshift(File.dirname(__FILE__))
+
 %w{rubygems icalendar date open-uri}.each{|l| require l}
+%w{icalendar_extensions}.each{|l| require 'calfilter/' + l}
 
 module CalFilter
-  VERSION = '1.1.2'
+  VERSION = '1.1.3'
   
   def self.output_stream
     @output_stream
