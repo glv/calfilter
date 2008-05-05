@@ -1,5 +1,3 @@
-* Greatly improve (i.e., existing) RDocs
-
 * Ensure timezone information is retained
 
 * Improved set of TripIt methods

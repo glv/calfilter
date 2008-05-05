@@ -1,4 +1,4 @@
-class DateTime
+class DateTime  # :nodoc: all
   attr_writer :utc
   
   def utc?

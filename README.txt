@@ -12,13 +12,15 @@ various purposes, including:
 * removing private information from your own calendar before publishing it to others
 * reformatting a provided calendar to highlight particular information
 
-== FEATURES/PROBLEMS:
+A calfilter script does most of its work using the filter_calendars[link:files/lib/calfilter_rb.html] method.
 
-* require 'calfilter/tripit' to add some methods specific to
+== FEATURES:
+
+* require '{calfilter/tripit}[link:files/lib/calfilter/tripit_rb.html]' to add some methods specific to
   tripit.com calendar feeds.
 
-* require 'calfilter/cgi' to automatically turn your filter into
-  a CGI script.  The CGI object is available as 'CalFilter::CGI'.
+* require '{calfilter/cgi}[link:files/lib/calfilter/cgi_rb.html]' to automatically turn your filter into
+  a CGI script.  The CGI object is available as <tt>CalFilter::CGI</tt>.
 
 == SYNOPSIS:
 
@@ -42,6 +44,10 @@ calfilter depends on the icalendar gem.
 == INSTALL:
 
 sudo gem install calfilter
+
+== AUTHOR
+
+Glenn Vanderburg <glenn@thinkrelevance.com>
 
 == LICENSE:
 

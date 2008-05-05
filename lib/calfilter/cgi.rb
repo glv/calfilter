@@ -1,10 +1,19 @@
+# Turns a calfilter script into a CGI script.  
+# 
+# Simply require this file at the top of a calfilter script
+# to turn it into a CGI script.  The CGI object will be accessible
+# as <tt>CalFilter::CGI</tt>.
+#
+# (This file makes use of CalFilter.output_stream, so please don't
+# set that yourself if using calfilter/cgi.)
+
 require 'calfilter'
 require 'cgi'
 require 'stringio'
 
 module CalFilter
 
-  class CGIWrapper
+  class CGIWrapper  # :nodoc: all
     attr_reader :output_stream
     
     def initialize(output_stream)
@@ -25,7 +34,7 @@ module CalFilter
     end
   end
 
-  def self.make_cgi_wrapper
+  def self.make_cgi_wrapper # :nodoc:
     CGIWrapper.new(StringIO.new)
   end
   

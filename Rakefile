@@ -12,6 +12,9 @@ class Hoe
   end
 end
 
+# Class structure isn't complex enough to make diagrams worthwhile.
+ENV['NODOT'] = "true"
+
 Hoe.new('calfilter', CalFilter::VERSION) do |p|
   p.rubyforge_name = 'thinkrelevance'
   p.developer('Glenn Vanderburg', 'glenn@thinkrelevance.com')
