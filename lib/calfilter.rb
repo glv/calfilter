@@ -1,7 +1,7 @@
 $:.unshift(File.dirname(__FILE__))
 
 %w{rubygems icalendar date open-uri}.each{|l| require l}
-%w{icalendar_extensions}.each{|l| require 'calfilter/' + l}
+%w{datetime icalendar time}.each{|l| require "calfilter/#{l}_extensions"}
 
 module CalFilter
   VERSION = '1.1.3'

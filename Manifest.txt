@@ -6,7 +6,9 @@ ToDo.txt
 example.rb
 lib/calfilter.rb
 lib/calfilter/cgi.rb
+lib/calfilter/datetime_extensions.rb
 lib/calfilter/icalendar_extensions.rb
+lib/calfilter/time_extensions.rb
 lib/calfilter/tripit.rb
 test/test_calfilter.rb
 test/test_calfilter_cgi.rb

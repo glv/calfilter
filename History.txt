@@ -5,6 +5,8 @@
   * Monkey-patched Icalendar to deal with Dates (as opposed to
     DateTimes) correctly.
 
+  * Monkey-patched Icalendar to preserve UTC on times.
+
 === 1.1.2 / 2008-05-04
 
 * Bug fix in calfilter.rb

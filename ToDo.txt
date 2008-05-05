@@ -1,0 +1,17 @@
+* Greatly improve (i.e., existing) RDocs
+
+* Ensure timezone information is retained
+
+* Improved set of TripIt methods
+
+* Other specialized methods (say, for GCalendar or ICal feeds)
+
+* Higher-level methods (say, "privatize" to replace all information with
+  a "Private" or "Busy" description)
+
+* Some date manipulation methods (e.g., my calendar might have the actual
+  appointment time for some events, but for display to others I might want
+  to enlarge it to incorporate travel time to and from)
+
+* Similar to the cgi module, it should be easy to require modules
+  to turn a filter into a camping app, a webrick service, etc.
