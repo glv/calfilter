@@ -13,3 +13,6 @@
 
 * Similar to the cgi module, it should be easy to require modules
   to turn a filter into a camping app, a webrick service, etc.
+
+* Perhaps have real methods for filter_{events,freebusys,journals,todos}
+  to improve the rdocs.
