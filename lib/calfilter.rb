@@ -259,7 +259,10 @@ end
 # objects, and passed into the supplied block one by one (as
 # CalendarWrapper objects).  The block can filter the calendars,
 # choosing to remove entire calendars or classes of calendar resources,
-# and/or simply modifying those resources as desired.
+# and/or simply modifying those resources as desired.  Each calendar object
+# has a #source method that contains associated source parameter from the
+# #filter_calendars call (so that you can recognize different calendars and
+# handle them in distinct ways).
 #
 # The method returns an array of Calendar objects representing the filtered
 # result.  If CalFilter::output_stream is not nil, the method will also write
@@ -288,14 +291,27 @@ def convert_to_icalendars(sources)  # :nodoc:
 end
 
 def convert_to_icalendar(source)  # :nodoc:
-  case source
-  when Icalendar::Calendar
-    [source]
-  when Array
-    source
-  when /^\s*BEGIN:VCALENDAR/m
-    Icalendar.parse(source)
-  else
-    Icalendar.parse(open(source, 'r'))
+  icalendars = case source
+               when Icalendar::Calendar
+                 [source]
+               when Array
+                 source
+               when /^\s*BEGIN:VCALENDAR/m
+                 Icalendar.parse(source)
+               else
+                 Icalendar.parse(open(source, 'r'))
+               end
+  attach_source_to_icalendars(source, icalendars)
+  icalendars
+end
+
+def attach_source_to_icalendars(source, icalendars)             
+  icalendars.each do |icalendar|
+    class <<icalendar
+      attr_reader :source
+    end
+    icalendar.instance_variable_set("@source", source)
   end
+  
+  icalendars
 end
