@@ -4,7 +4,7 @@ $:.unshift(File.dirname(__FILE__))
 %w{datetime icalendar time}.each{|l| require "calfilter/#{l}_extensions"}
 
 module CalFilter
-  VERSION = '1.1.4'
+  VERSION = '1.2.0'
   
   # The output stream for filtered icalendar output.
   # If this is not nil, filter_calendars will automatically
