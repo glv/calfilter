@@ -1,5 +1,8 @@
 # -*- ruby -*-
 
+ENV['RUBY_FLAGS'] =   "-I#{%w(lib ext bin test).join(File::PATH_SEPARATOR)}" +
+    (ENV['RUBY_DEBUG'] ? " #{ENV['RUBY_DEBUG']}" : '')
+
 require 'rubygems'
 require 'hoe'
 require './lib/calfilter.rb'
