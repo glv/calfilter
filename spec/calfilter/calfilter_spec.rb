@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'test/spec'
 require 'mocha'
 
 require 'calfilter'
@@ -25,17 +24,17 @@ describe "filtering calendars" do
   it "should pass things straight through" do
     expected_cals = %w{1 2 3}
     actual_cals = filter_calendars(expected_cals.dup)
-    assert_equal expected_cals.size, actual_cals.size
+    actual_cals.size.should == expected_cals.size
   end
   
   it "should delete a calendar when told" do
     cals = filter_calendars(%w{1 2 3}){|cal| cal.remove if cal.__delegate__ == "2"}
-    assert_equal %w{1 3}, cals
+    cals.should == %w{1 3}
   end
   
   it "should keep a calendar when told" do
     cals = filter_calendars(%w{1 2 3}){|cal| cal.keep if cal.__delegate__ == "2"}
-    assert_equal %w{2}, cals
+    cals.should == %w{2}
   end
   
   it "should delete parts of a calendar when told" do
@@ -55,26 +54,24 @@ describe "filtering calendars" do
   end
   
   it "should complain if we both keep and remove a calendar" do
-    assert_raise(CalFilter::FilterError) do
-      cals = filter_calendars(%w{1}){|cal| cal.keep; cal.remove}
-    end
+    expect{filter_calendars(%w{1}){|cal| cal.keep; cal.remove}}.to raise_error(CalFilter::FilterError)
   end
   
   it "should complain if we keep one calendar and remove another" do
-    assert_raises(CalFilter::FilterError) do
+    expect {
       cals = filter_calendars(%w{1 2 3}) do |cal|
         case cal.__delegate__
         when "1": cal.keep;
         when "2": cal.remove;
         end
       end
-    end
+    }.to raise_error(CalFilter::FilterError)
   end
   
   it "should delegate unknown methods to the Calendar objects" do
     results = []
     cals = filter_calendars(["a", "aa"]){|cal| results << (cal.size == 1)}
-    assert_equal [true, false], results
+    results.should == [true, false]
   end
     
 end
@@ -98,7 +95,7 @@ describe "filtering resources" do
     end
   end
   
-  xit "should leave resources alone if no block specified" do
+  it "should leave resources alone if no block specified" do
     filter_calendars([@cal]) do |cal|
       cal.__delegate__.expects(:events).returns(@cal.events)
       cal.filter_events

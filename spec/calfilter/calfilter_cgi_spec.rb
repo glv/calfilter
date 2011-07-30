@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'test/spec'
 require 'mocha'
 
 require 'calfilter'
@@ -15,12 +14,12 @@ describe "calfilter cgi scripts" do
   end
   
   it "should initialize a CGIWrapper object" do
-    assert_not_nil CalFilter::CGIWrapper
+    CalFilter::CGIWrapper.should_not be_nil?
   end
   
   it "should set CalFilter's output stream" do
-    assert_not_nil CalFilter::CGIWRAPPER.output_stream
-    assert_equal CalFilter::CGIWRAPPER.output_stream, CalFilter.output_stream
+    CalFilter::CGIWRAPPER.output_stream.should_not be_nil?
+    CalFilter.output_stream.should == CalFilter::CGIWRAPPER.output_stream
   end
   
   it "should finish the CGI on process exit" do

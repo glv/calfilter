@@ -1,0 +1,30 @@
+PATH
+  remote: .
+  specs:
+    calfilter (1.2.0)
+      icalendar
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    diff-lcs (1.1.2)
+    icalendar (1.1.6)
+    mocha (0.9.12)
+    rake (0.9.2)
+    rspec (2.6.0)
+      rspec-core (~> 2.6.0)
+      rspec-expectations (~> 2.6.0)
+      rspec-mocks (~> 2.6.0)
+    rspec-core (2.6.4)
+    rspec-expectations (2.6.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  calfilter!
+  mocha
+  rake
+  rspec
