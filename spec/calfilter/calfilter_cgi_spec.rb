@@ -1,7 +1,4 @@
-require 'rubygems'
-require 'mocha'
-
-require 'calfilter'
+require File.dirname(__FILE__) + '/../spec_helper'
 
 def at_exit(&block)
   $at_exit_block = block
@@ -14,11 +11,11 @@ describe "calfilter cgi scripts" do
   end
   
   it "should initialize a CGIWrapper object" do
-    CalFilter::CGIWrapper.should_not be_nil?
+    CalFilter::CGIWrapper.should_not be_nil
   end
   
   it "should set CalFilter's output stream" do
-    CalFilter::CGIWRAPPER.output_stream.should_not be_nil?
+    CalFilter::CGIWRAPPER.output_stream.should_not be_nil
     CalFilter.output_stream.should == CalFilter::CGIWRAPPER.output_stream
   end
   

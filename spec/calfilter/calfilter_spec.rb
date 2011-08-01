@@ -1,7 +1,4 @@
-require 'rubygems'
-require 'mocha'
-
-require 'calfilter'
+require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "filtering calendars" do
   it "should fetch urls and parse them" do
@@ -96,8 +93,9 @@ describe "filtering resources" do
   end
   
   it "should leave resources alone if no block specified" do
+    events = @cal.events
     filter_calendars([@cal]) do |cal|
-      cal.__delegate__.expects(:events).returns(@cal.events)
+      cal.__delegate__.expects(:events).returns(events)
       cal.filter_events
     end
   end
