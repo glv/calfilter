@@ -15,5 +15,5 @@ RSpec.configure do |c|
   c.mock_with :mocha
   c.run_all_when_everything_filtered = true
   c.add_formatter :progress
-  c.add_formatter :documentation, 'rspec.txt'
+  #c.add_formatter :documentation, 'rspec.txt'
 end

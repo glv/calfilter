@@ -58,8 +58,8 @@ describe "filtering calendars" do
     expect {
       cals = filter_calendars(%w{1 2 3}) do |cal|
         case cal.__delegate__
-        when "1": cal.keep;
-        when "2": cal.remove;
+        when "1" then cal.keep;
+        when "2" then cal.remove;
         end
       end
     }.to raise_error(CalFilter::FilterError)
