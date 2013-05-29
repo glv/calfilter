@@ -1,3 +1,11 @@
+=== 1.2.1
+
+* Works under Ruby 1.9
+
+=== 1.2.0
+
+* Added source method to Calendar objects
+
 === 1.1.4 / 2008-05-05
 
 * Documentation!

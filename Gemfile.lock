@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    calfilter (1.2.0)
+    calfilter (1.2.1)
       icalendar
 
 GEM

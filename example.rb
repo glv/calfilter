@@ -8,7 +8,7 @@ gem 'calfilter'
 require 'calfilter'
 require 'calfilter/cgi'
 
-filter_calendars(CalFilter::CGI.query_string}) do |cal|
+filter_calendars(CalFilter::CGI.query_string) do |cal|
   cal.keep(:events) # drop todos, journals, etc.
   
   cal.filter_events do |evt|

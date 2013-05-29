@@ -25,8 +25,16 @@ module CalFilter
       CGI.new
     end
     
+    def cgi_constant_defined?
+      if RUBY_VERSION < "1.9"
+        CalFilter.const_defined?('CGI')
+      else
+        CalFilter.const_defined?('CGI', false)
+      end
+    end
+    
     def set_cgi_constant
-      CalFilter.const_set('CGI', create_cgi_instance) unless CalFilter.const_defined?('CGI')
+      CalFilter.const_set('CGI', create_cgi_instance) unless cgi_constant_defined?
     end
     
     def finish
